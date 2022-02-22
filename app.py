@@ -45,16 +45,16 @@ def register_emp():
 
 @app.route('/search',methods = ['GET','POST'])
 def search():
-    si = request.form.get('s_id')
-    sn = request.form.get('s_name')
-    if si:
-        q = EmpData.query.filter_by(id=si).first()
-        return render_template('search.html', search_emp=q)
-    elif sn:
-        q = EmpData.query.filter_by(name=sn).first()
-        return render_template('search.html', search_emp=q)
+    if request.method == 'POST':
+        si = request.form.get('s_id')
+        sn = request.form.get('s_name')
+        if si:
+            q = EmpData.query.filter_by(id=si).first()
+        else:
+            q = EmpData.query.filter_by(name=sn).first()
+        return render_template('search.html', search_emp=q,flag=1)
     else:
-        return render_template('searchnew.html')
+        return render_template('search.html',flag=0)
 
 @app.route('/list')
 def list_emp():

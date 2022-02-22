@@ -6,7 +6,7 @@
 
 {% block body %}
 <br>
-<form method="post">
+<form action="/search" method="post">
     <input type="search" name="s_id" placeholder="Enter Employee ID">
     <input type="search" name="s_name" placeholder="Enter Employee Name">
     <button type="submit" class="btn btn-primary" >Search</button>
@@ -36,8 +36,16 @@
     </tbody>
 </table>
 {% else %}
-    Details not found
-<br>
+    {% if flag==1 %}
+         <!-- Danger Alert -->
+        <div class="alert alert-danger alert-dismissible fade show">
+            <strong>Details not found!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% else %}
+
+    {% endif %}
 {% endif %}
+<br>
 <a class="btn btn-outline-dark" href="/">HOMEPAGE</a>
 {% endblock %}
