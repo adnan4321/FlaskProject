@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Search</title>
+{% endblock %}
+
+<! emp_id, user_type, emp_name, dob, doj, year_of_exp, skill_sets, projects>
+
+{% block body %}
+<br>
+<form method="post">
+    <input type="search" name="s_id" placeholder="Enter Employee ID">
+    <input type="search" name="s_name" placeholder="Enter Employee Name">
+    <button type="submit" class="btn btn-primary" data-inline="true">Search</button>
+</form>
+<br>
+<hr>
+{% endblock %}

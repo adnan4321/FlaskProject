@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>HOME</title>
+{% endblock %}
+
+{% block body %}
+<br>
+{% if submission_successful %}
+ <!-- Success Alert -->
+    <div class="alert alert-success alert-dismissible fade show">
+        <strong>Success!</strong> Registration successful.
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+{% endif %}
+<br>
+<h1>Welcome to Employee Management Application</h1><br>
+<hr>
+<br>
+<div class="container">
+    <h3>Select Operation</h3>
+<br>
+<div class="row">
+    <div class="col-3">
+    Register an Employee:
+    </div>
+    <a class="btn btn-outline-dark col-auto" href="/register">REGISTER</a>
+</div>
+    <br>
+<div class="row">
+    <div class="col-md-3">
+        Search Employee Details:
+    </div>
+    <a class="btn btn-outline-dark col-auto" href="/search">SEARCH</a>
+</div>
+    <!--
+<div class="row">
+    <div class="col-md-3">
+        List Employee Details:
+    </div>
+    <a class="btn btn-outline-dark col-auto" href="/list">LIST</a>
+</div>
+    --!>
+<br>
+<div class="row">
+    <div class="col-md-3">
+        Update Employee Details:
+    </div>
+    <a class="btn btn-outline-dark col-auto" href="/update">UPDATE</a>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-3">
+        Delete Employee Details:
+    </div>
+    <a class="btn btn-outline-dark col-auto" href="/delete">DELETE</a>
+</div>
+    </div>
+<br>
+{% endblock %}

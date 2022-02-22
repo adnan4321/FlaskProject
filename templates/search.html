@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Search</title>
+{% endblock %}
+
+{% block body %}
+<br>
+<form method="post">
+    <input type="search" name="s_id" placeholder="Enter Employee ID">
+    <input type="search" name="s_name" placeholder="Enter Employee Name">
+    <button type="submit" class="btn btn-primary" >Search</button>
+</form>
+<br>
+<hr>
+{% if search_emp %}
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>ID</th><th>Name</th>
+            <th>User Type</th><th>Date of Birth</th><th>Date of Joining</th>
+            <th>Experience (yrs)</th><th>Projects</th><th>Skill Sets</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">{{search_emp.id}}</th>
+            <td>{{search_emp.name}}</td>
+            <td>{{search_emp.usertype}}</td>
+            <td>{{search_emp.dob}}</td>
+            <td>{{search_emp.doj}}</td>
+            <td>{{search_emp.yoe}}</td>
+            <td>{{search_emp.projects}}</td>
+            <td>{{search_emp.skill_set}}</td>
+        </tr>
+    </tbody>
+</table>
+{% else %}
+    Details not found
+<br>
+{% endif %}
+<a class="btn btn-outline-dark" href="/">HOMEPAGE</a>
+{% endblock %}

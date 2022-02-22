@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>List</title>
+{% endblock %}
+
+{% block body %}
+<br>
+<h2>List of Employees</h2>
+<br>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">ID</th><th scope="col">Name</th>
+            <th>User Type</th><th>Date of Birth</th><th>Date of Joining</th>
+            <th>Experience (yrs)</th><th>Projects</th><th>Skill Sets</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for data in list_emp %}
+    <tr>
+        <th scope="row">{{data.id}}</th>
+        <td>{{data.name}}</td>
+        <td>{{data.usertype}}</td>
+        <td>{{data.dob}}</td>
+        <td>{{data.doj}}</td>
+        <td>{{data.yoe}}</td>
+        <td>{{data.projects}}</td>
+        <td>{{data.skill_set}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<br><br>
+<a class="btn btn-outline-dark" href="/">HOMEPAGE</a>
+{% endblock %}
