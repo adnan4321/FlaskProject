@@ -6,6 +6,14 @@
 
 {% block body %}
 <br>
+<form action="/search" method="post">
+    <input type="search" name="s_id" placeholder="Enter Employee ID">
+    <input type="search" name="s_name" placeholder="Enter Employee Name">
+    <button type="submit" class="btn btn-primary" >Search</button>
+</form>
+<br>
+<hr>
+<br>
 <h2>List of Employees</h2>
 <br>
 <table class="table">

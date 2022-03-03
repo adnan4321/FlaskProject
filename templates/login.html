@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Login</title>
+{% endblock %}
+
+{% block body %}
+<br>
+{% if logout_successful %}
+ <!-- Success Alert -->
+    <div class="alert alert-success alert-dismissible fade show">
+        <strong>You have been logged out!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+{% endif %}
+<br>
+<h1>Welcome to Employee Management Application</h1><br>
+<hr>
+    {% if incorrect_user %}
+         <!-- Danger Alert -->
+        <div class="alert alert-danger alert-dismissible fade show">
+            <strong>Username not found!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% elif incorrect_pw %}
+         <!-- Danger Alert -->
+        <div class="alert alert-danger alert-dismissible fade show">
+            <strong>Incorrect password!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endif %}
+<br>
+<form method="POST">
+    <div class="form-group row">
+        <label for="emp_user" class="col-sm-2 col-form-label">Username</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="emp_user" name="emp_user" required>
+        </div>
+    </div>
+    <br>
+    <div class="form-group row">
+        <label for="emp_pw" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-4">
+          <input type="password" class="form-control" id="emp_pw" name="emp_pw" required>
+        </div>
+    </div>
+    <br>
+    <div class="col-sm-2">
+      <button type="submit" class="btn btn-primary" data-inline="true">Login</button>
+    </div>
+</form>
+{% endblock %}
