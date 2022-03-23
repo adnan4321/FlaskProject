@@ -21,7 +21,7 @@
         <tr>
             <th scope="col">ID</th><th scope="col">Name</th>
             <th>User Type</th><th>Date of Birth</th><th>Date of Joining</th>
-            <th>Experience (yrs)</th><th>Projects</th><th>Skill Sets</th>
+            <th>Exp (yrs)</th><th>Projects</th><th>Skill Sets</th>
         </tr>
     </thead>
     <tbody>
@@ -35,6 +35,10 @@
         <td>{{data.yoe}}</td>
         <td>{{data.projects}}</td>
         <td>{{data.skill_set}}</td>
+        <td><a class="btn btn-outline-dark col-auto" href="/edit/{{data.id}} ">EDIT</a></td>
+        {% if current_user.user_id != data.id %}
+            <td><a class="btn btn-outline-dark col-auto" href="/delete/{{data.id}} ">DELETE</a></td>
+        {% endif %}
     </tr>
     {% endfor %}
     </tbody>

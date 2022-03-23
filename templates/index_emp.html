@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>HOME</title>
+{% endblock %}
+
+{% block body %}
+<br>
+{% if submission_successful %}
+    <!-- Success Alert -->
+    <div class="alert alert-success alert-dismissible fade show">
+        <strong>Success!</strong> Registration successful.
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+{% endif %}
+{% if update_successful %}
+    <!-- Success Alert -->
+    <div class="alert alert-success alert-dismissible fade show">
+        <strong>Details updated.</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+{% endif %}
+{% if delete_successful %}
+    <!-- Success Alert -->
+    <div class="alert alert-success alert-dismissible fade show">
+        <strong>User deleted.</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+{% endif %}
+<br>
+<h1>Welcome to Employee Management Application</h1><br>
+<hr>
+<br>
+<h3>Hi, {{ current_user.data.name}}!</h3>
+<br><br>
+<div class="container">
+    <h4>Select an Operation</h4>
+    <br>
+    {% if current_user.data.usertype == 'Employee' %}
+        <div class="row">
+            <div class="col-md-3">
+                Search Employee Details:
+            </div>
+        <a class="btn btn-outline-dark col-auto" href="/search">SEARCH</a>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-3">
+                Edit Details:
+            </div>
+            <a class="btn btn-outline-dark col-auto" href="/edit/{{current_user.user_id}}">EDIT</a>
+        </div>
+        <br>
+    {% else %}
+        <div class="row">
+            <div class="col-4">
+            Register an Employee:
+            </div>
+        <a class="btn btn-outline-dark col-auto" href="/register">REGISTER</a>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-4">
+                Search/ Modify Employee Details:
+            </div>
+            <a class="btn btn-outline-dark col-auto" href="/search">SEARCH/ MODIFY</a>
+        </div>
+    {% endif %}
+    <br>
+    <a class="btn btn-outline-dark" href="/edit/change/{{current_user.user_id}} ">Change Password</a>
+</div>
+<br><br>
+<a  class="btn btn-outline-dark float-right" href="/logout">LOGOUT</a>
+{% endblock %}

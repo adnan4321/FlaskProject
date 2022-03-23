@@ -8,5 +8,59 @@
 <br>
 <h2>Update Employee details</h2>
 <br>
-<a class="btn btn-outline-dark" href="/">HOMEPAGE</a>
+<form action="/edit/{{emp_data.id}}" method="post">
+  <div class="form-group row">
+    <label for="emp_name" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="emp_name" name="emp_name" value="{{emp_data.name}}">
+    </div>
+  </div>
+  <br>
+  <div class="form-group row">
+    <label for="emp_exp" class="col-sm-2 col-form-label">Experience (yrs)</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="emp_exp" id="emp_exp" value="{{emp_data.yoe}}">
+    </div>
+  </div>
+  <br>
+  <div class="form-group row">
+    <label for="emp_dob" class="col-sm-2 col-form-label">Date of Birth</label>
+    <div class="col-sm-4">
+      <input type="date" class="form-control" name="emp_dob" id="emp_dob" value="{{emp_data.dob}}">
+    </div>
+  </div>
+  <br>
+  <div class="form-group row">
+    <label for="emp_doj" class="col-sm-2 col-form-label">Date of Joining</label>
+    <div class="col-sm-4">
+      <input type="date" class="form-control" name="emp_doj" id="emp_doj" value="{{emp_data.doj}}">
+    </div>
+  </div>
+  <br>
+  <div class="form-group row">
+      <label for="emp_pro" class="col-sm-2 col-form-label">Projects:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="emp_pro"  id="emp_pro" value="{{emp_data.projects}}">
+    </div>
+  </div>
+  <br>
+  <div class="form-group row">
+    <label for="emp_ss" class="col-sm-2 col-form-label">Skill sets:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="emp_ss" id="emp_ss" value="{{emp_data.skill_set}}">
+    </div>
+  </div>
+  <br>
+  <div class="form-group row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-2">
+      <button type="submit" class="btn btn-success" data-inline="true">Save</button>
+    </div>
+      <div class="col-sm-2">
+      <a class="btn btn-danger" href="/" data-inline="true">Cancel</a>
+    </div>
+  </div>
+  <br>
+</form>
 {% endblock %}
