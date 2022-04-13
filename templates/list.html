@@ -6,27 +6,45 @@
 
 {% block body %}
 <br>
-<form action="/search" method="post">
+<form action="/search">
     <input type="search" name="s_id" placeholder="Enter Employee ID">
     <input type="search" name="s_name" placeholder="Enter Employee Name">
+    <br><br>
+{% if current_user.data.usertype == 'Admin' %}
+    <div class="form-group row align-items-center">
+        <div class="col-3">
+            <input type="search" name="s_skill" placeholder="Enter Skill Name">
+        </div>
+        <div class="col-2">
+            <select class="form-select" id="s_rating" name="s_rating">
+                <option selected>Select Rating:</option>
+                <option value="1">Beginner</option>
+                <option value="2">Intermediate</option>
+                <option value="3">Expert</option>
+            </select>
+        </div>
+        <div class="col-2">
+              <input type="radio" name="searchval" id="emp" value="1">
+              <label for="emp">Search by skill</label>
+        </div>
+    </div>
+    {%  endif %}
+        <br>
     <button type="submit" class="btn btn-primary" >Search</button>
 </form>
 <br>
 <hr>
-<br>
-<h2>List of Employees</h2>
-<br>
 <table class="table">
     <thead class="thead-light">
         <tr>
-            <th scope="col">ID</th><th scope="col">Name</th>
+            <th>ID</th><th>Name</th>
             <th>User Type</th><th>Date of Birth</th><th>Date of Joining</th>
             <th>Exp (yrs)</th><th>Projects</th><th>Skill Sets</th>
         </tr>
     </thead>
     <tbody>
-    {% for data in list_emp %}
-    <tr>
+    {% for data in search_emp %}
+    <tr class="align-middle">
         <th scope="row">{{data.id}}</th>
         <td>{{data.name}}</td>
         <td>{{data.usertype}}</td>
@@ -35,9 +53,11 @@
         <td>{{data.yoe}}</td>
         <td>{{data.projects}}</td>
         <td>{{data.skill_set}}</td>
-        <td><a class="btn btn-outline-dark col-auto" href="/edit/{{data.id}} ">EDIT</a></td>
-        {% if current_user.user_id != data.id %}
-            <td><a class="btn btn-outline-dark col-auto" href="/delete/{{data.id}} ">DELETE</a></td>
+        {% if current_user.data.usertype == 'Admin' %}
+            <td><a class="btn btn-outline-dark col-auto" href="/edit/{{data.id}} ">EDIT</a></td>
+            {% if current_user.user_id != data.id %}
+                <td><a class="btn btn-outline-dark col-auto" href="/delete/{{data.id}} ">DELETE</a></td>
+            {% endif %}
         {% endif %}
     </tr>
     {% endfor %}

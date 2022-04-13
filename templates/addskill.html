@@ -1,10 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block head %}
+<title>Add Skill</title>
+{% endblock %}
+
+{% block body %}
+<br>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category,msg in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show">
+                {{ msg }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<h2>Add Skills</h2>
+<br>
+<form method="post">
+    <div class="form-group row">
+        <label for="sname" class="col-sm-2 col-form-label">Skill:</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" name="sname"  id="sname" required>
+        </div>
+    </div>
+    <br>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Rating:</label>
+        <div class="custom-control-radio col-sm-4">
+            <input type="radio" id="beginner" class="custom-control-input" name="srating" value="1" required>
+            <label for="beginner" class="custom-control-label">Beginner</label>
+            <br>
+            <input type="radio" id="intermediate" class="custom-control-input" name="srating" value="2">
+            <label for="intermediate" class="custom-control-label">Intermediate</label>
+            <br>
+            <input type="radio" id="expert" class="custom-control-input" name="srating" value="3">
+            <label for="expert" class="custom-control-label">Expert</label>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="form-group row">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn-success" data-inline="true">Save</button>
+        </div>
+          <div class="col-sm-2">
+          <a class="btn btn-danger" href="/" data-inline="true">Cancel</a>
+        </div>
+    </div>
+    <br>
+</form>
+{% endblock %}

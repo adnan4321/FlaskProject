@@ -8,10 +8,10 @@
 <br>
 <h2>Update Employee details</h2>
 <br>
-<form action="/edit/{{emp_data.id}}" method="post">
+<form method="post">
   <div class="form-group row">
     <label for="emp_name" class="col-sm-2 col-form-label">Name</label>
-    <div class="col-sm-10">
+    <div class="col-sm-4">
       <input type="text" class="form-control" id="emp_name" name="emp_name" value="{{emp_data.name}}">
     </div>
   </div>
@@ -39,15 +39,23 @@
   <br>
   <div class="form-group row">
       <label for="emp_pro" class="col-sm-2 col-form-label">Projects:</label>
-    <div class="col-sm-10">
+    <div class="col-sm-4">
       <input type="text" class="form-control" name="emp_pro"  id="emp_pro" value="{{emp_data.projects}}">
     </div>
   </div>
   <br>
-  <div class="form-group row">
+  <!--<div class="form-group row">
     <label for="emp_ss" class="col-sm-2 col-form-label">Skill sets:</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" name="emp_ss" id="emp_ss" value="{{emp_data.skill_set}}">
+    </div>
+  </div>
+  <br>-->
+  <div class="form-group row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-2">
+      <a class="btn btn-primary" href="/addskills/{{emp_data.id}}" data-inline="true">Add Skills</a>
     </div>
   </div>
   <br>

@@ -6,49 +6,36 @@
 
 {% block body %}
 <br>
-{% if submission_successful %}
-    <!-- Success Alert -->
-    <div class="alert alert-success alert-dismissible fade show">
-        <strong>Success!</strong> Registration successful.
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-{% endif %}
-{% if update_successful %}
-    <!-- Success Alert -->
-    <div class="alert alert-success alert-dismissible fade show">
-        <strong>Details updated.</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-{% endif %}
-{% if delete_successful %}
-    <!-- Success Alert -->
-    <div class="alert alert-success alert-dismissible fade show">
-        <strong>User deleted.</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-{% endif %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category,msg in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show">
+                {{ msg }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 <br>
 <h1>Welcome to Employee Management Application</h1><br>
 <hr>
 <br>
-<h3>Hi, {{ current_user.data.name}}!</h3>
+<div class="row">
+    <div class="col-8"><h3>Hi, {{ current_user.data.name}}!</h3></div>
+    <div class="col-4">
+        <a class="btn btn-outline-dark" href="/edit/change/{{current_user.user_id}} ">Change Password</a>
+        <a  class="btn btn-outline-dark float-right" href="/logout">LOGOUT</a></div>
+    </div>
 <br><br>
-<div class="container">
+<div>
     <h4>Select an Operation</h4>
     <br>
     {% if current_user.data.usertype == 'Employee' %}
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-4">
                 Search Employee Details:
             </div>
         <a class="btn btn-outline-dark col-auto" href="/search">SEARCH</a>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-3">
-                Edit Details:
-            </div>
-            <a class="btn btn-outline-dark col-auto" href="/edit/{{current_user.user_id}}">EDIT</a>
         </div>
         <br>
     {% else %}
@@ -65,10 +52,27 @@
             </div>
             <a class="btn btn-outline-dark col-auto" href="/search">SEARCH/ MODIFY</a>
         </div>
+        <br>
+        <div class="row">
+            <div class="col-4">
+                Add/ Create Team:
+            </div>
+            <a class="btn btn-outline-dark col-auto" href="/team/edit">ADD/ CREATE</a>
+        </div>
+        <br>
     {% endif %}
+    <div class="row">
+            <div class="col-md-4">
+                My Team Info:
+            </div>
+            <a class="btn btn-outline-dark col-auto" href="/viewteam/{{current_user.user_id}}">VIEW TEAM</a>
+    </div>
     <br>
-    <a class="btn btn-outline-dark" href="/edit/change/{{current_user.user_id}} ">Change Password</a>
+    <div class="row">
+            <div class="col-md-4">
+                Edit Personal Details:
+            </div>
+            <a class="btn btn-outline-dark col-auto" href="/edit/{{current_user.user_id}}">EDIT</a>
+    </div>
 </div>
-<br><br>
-<a  class="btn btn-outline-dark float-right" href="/logout">LOGOUT</a>
 {% endblock %}

@@ -1,10 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block head %}
+<title>Add/Create</title>
+{% endblock %}
+
+{% block body %}
+<br>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category,msg in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show">
+                {{ msg }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<h2>Team Details</h2>
+<br>
+<hr>
+<br>
+<form method="post">
+  <div class="form-group row">
+    <label for="uid" class="col-sm-2 col-form-label">User ID</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="uid" name="uid" placeholder="Enter User ID">
+    </div>
+  </div>
+  <br>
+  <div class="form-group row">
+    <label for="tname" class="col-sm-2 col-form-label">Team Name</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="tname" id="tname" placeholder="Enter Team Name">
+    </div>
+  </div>
+  <br>
+  <div class="form-group row">
+    <label for="proj" class="col-sm-2 col-form-label">Project</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="proj" id="proj" placeholder="Enter Project Name">
+    </div>
+  </div>
+  <br>
+  <div class="form-group row">
+    <label for="des" class="col-sm-2 col-form-label">Designation</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="des" id="des" placeholder="Enter Designation">
+    </div>
+  </div>
+  <br>
+  <div class="form-group row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-2">
+      <button type="submit" class="btn btn-success" data-inline="true">Save</button>
+    </div>
+      <div class="col-sm-2">
+      <a class="btn btn-danger" href="/" data-inline="true">Cancel</a>
+    </div>
+  </div>
+  <br>
+</form>
+{% endblock %}

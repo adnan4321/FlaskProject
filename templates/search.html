@@ -6,9 +6,30 @@
 
 {% block body %}
 <br>
-<form action="/search" method="post">
+<form action="/search">
     <input type="search" name="s_id" placeholder="Enter Employee ID">
     <input type="search" name="s_name" placeholder="Enter Employee Name">
+    <br><br>
+{% if current_user.data.usertype == 'Admin' %}
+    <div class="form-group row align-items-center">
+        <div class="col-3">
+            <input type="search" name="s_skill" placeholder="Enter Skill Name">
+        </div>
+        <div class="col-2">
+            <select class="form-select" id="s_rating" name="s_rating">
+                <option selected>Select Rating:</option>
+                <option value="1">Beginner</option>
+                <option value="2">Intermediate</option>
+                <option value="3">Expert</option>
+            </select>
+        </div>
+        <div class="col-2">
+              <input type="radio" name="searchval" id="emp" value="1">
+              <label for="emp">Search by skill</label>
+        </div>
+    </div>
+    {%  endif %}
+        <br>
     <button type="submit" class="btn btn-primary" >Search</button>
 </form>
 <br>
@@ -45,17 +66,16 @@
 </table>
 {% else %}
     {% if flag==1 %}
-         <!-- Danger Alert -->
-        <div class="alert alert-danger alert-dismissible fade show">
-            <strong>Details not found!</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
+    <!-- Danger Alert -->
+    <div class="alert alert-danger alert-dismissible fade show">
+        <strong>Details not found!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
     {% endif %}
 {% endif %}
-<br>
+<br><br>
 {% if current_user.data.usertype == 'Admin' %}
     <a class="btn btn-outline-dark col-auto" href="/list">VIEW ALL</a>
 {% endif %}
-    <a class="btn btn-outline-dark" href="/">HOMEPAGE</a>
-
+    <a class="btn btn-outline-dark" href="{{ url_for('home') }}" >HOMEPAGE</a>
 {% endblock %}

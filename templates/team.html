@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block head %}
+<title>Team</title>
+{% endblock %}
+
+{% block body %}
+<br>
+<h1>Team Details</h1>
+<hr>
+<br>
+{% for info in list_emp %}
+<h3>{{info[loop.index-1].team_name}} - {{ info[loop.index-1].project }}</h3>
+<br>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">S.No.</th>
+            <th scope="col">Member Name</th>
+            <th>Designation</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for data in info %}
+    <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td>{{data.team.name}}</td>
+        <td>{{data.designation}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<br><br>
+{% endfor %}
+<a class="btn btn-outline-dark" href="/">HOMEPAGE</a>
+{% endblock %}
